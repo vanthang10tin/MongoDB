@@ -1,0 +1,36 @@
+//Docker compose
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+volumes:
+  mongodata:
+//docker-compose up -d
+//docker exec -it mongodb bash
+//docker exec -it mongodb mongosh -u root -p example --authenticationDatabase admin
+-> authenticationDatabase : xac dinh csdl can vao
+// Tao mot use moi 
+use admin
+db.createUser({
+  user: "testuser",
+  pwd: "testpassword",
+  roles: [
+    { role: "readWrite", db: "mydatabase" }
+  ]
+})
+// Vao lai cai vua tao docker exec -it mongodb mongosh -u testuser -p testpassword --authenticationDatabase mydatabase
+//docker-compose down -v : Xoa
+
+
+
+
+
+
